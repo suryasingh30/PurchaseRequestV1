@@ -1,0 +1,11 @@
+E:\PurchaseRequest\PurchaseRequestApp.Application\bin\Debug\net9.0\PurchaseRequestApp.Application.deps.json
+E:\PurchaseRequest\PurchaseRequestApp.Application\bin\Debug\net9.0\PurchaseRequestApp.Application.dll
+E:\PurchaseRequest\PurchaseRequestApp.Application\bin\Debug\net9.0\PurchaseRequestApp.Application.pdb
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.AssemblyInfoInputs.cache
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.AssemblyInfo.cs
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.csproj.CoreCompileInputs.cache
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.dll
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\refint\PurchaseRequestApp.Application.dll
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\PurchaseRequestApp.Application.pdb
+E:\PurchaseRequest\PurchaseRequestApp.Application\obj\Debug\net9.0\ref\PurchaseRequestApp.Application.dll

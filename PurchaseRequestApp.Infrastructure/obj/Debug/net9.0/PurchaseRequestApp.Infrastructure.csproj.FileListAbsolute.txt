@@ -1,0 +1,17 @@
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.csproj.AssemblyReference.cache
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.AssemblyInfoInputs.cache
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.AssemblyInfo.cs
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.csproj.CoreCompileInputs.cache
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Infrastructure.deps.json
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Infrastructure.runtimeconfig.json
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Infrastructure.dll
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Infrastructure.pdb
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Domain.dll
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\bin\Debug\net9.0\PurchaseRequestApp.Domain.pdb
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\Purchase.90658245.Up2Date
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.dll
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\refint\PurchaseRequestApp.Infrastructure.dll
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.pdb
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\PurchaseRequestApp.Infrastructure.genruntimeconfig.cache
+E:\PurchaseRequest\PurchaseRequestApp.Infrastructure\obj\Debug\net9.0\ref\PurchaseRequestApp.Infrastructure.dll

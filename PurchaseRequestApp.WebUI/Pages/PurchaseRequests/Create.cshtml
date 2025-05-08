@@ -1,0 +1,263 @@
+@page
+@model PurchaseRequestApp.WebUI.Pages.PurchaseRequests.CreateModel
+@{
+    ViewData["Title"] = "New Purchase Request";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert('@TempData["SuccessMessage"]');
+        location.reload(); // refreshes the page
+    </script>
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary text-white">
+            <h4 class="m-0 font-weight-bold">Create Purchase Request</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label">Document No <span class="text-danger">*</span></label>
+                        <input asp-for="PurchaseRequest.DocumentNo" class="form-control" maxlength="30" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Document Date <span class="text-danger">*</span></label>
+                        <input type="date" asp-for="PurchaseRequest.DocumentDate" class="form-control" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Company <span class="text-danger">*</span></label>
+                        <select asp-for="PurchaseRequest.CompanyId" class="form-control custom-select" required
+                                asp-items="@(new SelectList(Model.Companies, "Id", "Name"))">
+                            <option value="">-- Select Company --</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Department <span class="text-danger">*</span></label>
+                        <select asp-for="PurchaseRequest.DepartmentId" class="form-control custom-select" required
+                                asp-items="@(new SelectList(Model.Departments, "Id", "Name"))">
+                            <option value="">-- Select Department --</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Indent Type <span class="text-danger">*</span></label>
+                        <select asp-for="PurchaseRequest.IndentType" class="form-control custom-select" required>
+                            <option value="">-- Select Indent Type --</option>
+                            <option>Capital</option>
+                            <option>Revenue</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Charge Type <span class="text-danger">*</span></label>
+                        <select asp-for="PurchaseRequest.ChargeType" class="form-control custom-select" required>
+                            <option value="">-- Select Charge Type --</option>
+                            <option>Chargeable</option>
+                            <option>Non Chargeable</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-check mt-4 pt-2">
+                            <input class="form-check-input" type="checkbox" asp-for="PurchaseRequest.IsReserved" />
+                            <label class="form-check-label" asp-for="PurchaseRequest.IsReserved">Is Reserved</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Requested By <span class="text-danger">*</span></label>
+                        <input asp-for="PurchaseRequest.RequestedBy" class="form-control" required />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Indent Tags</label>
+                        <input asp-for="PurchaseRequest.IndentTags" class="form-control" placeholder="Enter tags separated by commas" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Remarks</label>
+                        <textarea asp-for="PurchaseRequest.Remarks" class="form-control" maxlength="1000" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="m-0">Item Details</h4>
+                    <button type="button" class="btn btn-success btn-sm" onclick="addRow()">
+                        <i class="fas fa-plus"></i> Add Item
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="itemsTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Item <span class="text-danger">*</span></th>
+                                <th>Specification</th>
+                                <th>Make</th>
+                                <th>UOM <span class="text-danger">*</span></th>
+                                <th>Qty <span class="text-danger">*</span></th>
+                                <th>Rate <span class="text-danger">*</span></th>
+                                <th>Amount</th>
+                                <th>Required On <span class="text-danger">*</span></th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemRows">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <button type="reset" class="btn btn-outline-secondary me-md-2">
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
+                    
+                    <div class="form-check form-switch align-self-center me-3">
+                        <input class="form-check-input" type="checkbox" id="exportCheckbox" name="exportCheckbox">
+                        <label class="form-check-label" for="exportCheckbox">Export to Excel</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .form-label {
+            font-weight: 500;
+        }
+        .card {
+            border-radius: 0.35rem;
+        }
+        .table th {
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .table td {
+            vertical-align: middle;
+        }
+        .required-field::after {
+            content: "*";
+            color: red;
+            margin-left: 4px;
+        }
+        .action-btn {
+            min-width: 80px;
+        }
+        
+        /* Custom dropdown styling */
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem;
+        }
+        
+        .form-control-sm.custom-select {
+            background-size: 12px 8px;
+            padding-right: 2rem;
+        }
+        
+        /* Hover and focus states */
+        .custom-select:hover {
+            border-color: #adb5bd;
+        }
+        
+        .custom-select:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
+}
+
+@section Scripts {
+<script>
+    let itemIndex = 0;
+
+    function addRow() {
+        const row = `
+        <tr>
+            <td>
+                <select name="RequestItems[${itemIndex}].ItemId" class="form-control form-control-sm custom-select" required>
+                    <option value="">-- Select Item --</option>
+                    @foreach (var item in Model.Items)
+                    {
+                        <option value="@item.Id">@item.ItemName</option>
+                    }
+                </select>
+            </td>
+            <td><textarea name="RequestItems[${itemIndex}].Specification" class="form-control form-control-sm" rows="1"></textarea></td>
+            <td>
+                <select name="RequestItems[${itemIndex}].MakeId" class="form-control form-control-sm custom-select">
+                    <option value="">-- Select Make --</option>
+                    @foreach (var make in Model.Makes)
+                    {
+                        <option value="@make.Id">@make.Name</option>
+                    }
+                </select>
+            </td>
+            <td><input name="RequestItems[${itemIndex}].UOM" class="form-control form-control-sm" required /></td>
+            <td><input name="RequestItems[${itemIndex}].Quantity" type="number" step="0.001" class="form-control form-control-sm qty" required /></td>
+            <td><input name="RequestItems[${itemIndex}].Rate" type="number" step="0.01" class="form-control form-control-sm rate" /></td>
+            <td><input name="RequestItems[${itemIndex}].Amount" type="number" step="0.01" class="form-control form-control-sm amount" readonly /></td>
+            <td><input name="RequestItems[${itemIndex}].RequiredOn" type="date" class="form-control form-control-sm" required /></td>
+            <td><textarea name="RequestItems[${itemIndex}].Remarks" class="form-control form-control-sm" rows="1"></textarea></td>
+            <td class="text-center align-middle">
+                <button type="button" 
+                        class="btn btn-danger btn-sm p-2" 
+                        style="width: 34px; height: 34px;"
+                        onclick="removeRow(this)"
+                        title="Delete row">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>`;
+        $('#itemRows').append(row);
+        itemIndex++;
+    }
+
+    function removeRow(btn) {
+        $(btn).closest('tr').remove();
+    }
+
+    $(document).on('input', '.qty, .rate', function () {
+        const row = $(this).closest('tr');
+        const qty = parseFloat(row.find('.qty').val()) || 0;
+        const rate = parseFloat(row.find('.rate').val()) || 0;
+        row.find('.amount').val((qty * rate).toFixed(2));
+    });
+
+    $(document).ready(function() {
+        addRow();
+    });
+
+    $(document).ready(function() {
+        $('.form-check-input').on('change', function() {
+            if($(this).is(':checked')) {
+                $(this).next('.form-check-label').css('font-weight', 'bold');
+            } else {
+                $(this).next('.form-check-label').css('font-weight', 'normal');
+            }
+        });
+    });
+</script>
+}

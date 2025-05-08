@@ -1,0 +1,44 @@
+@page
+@model PurchaseRequestApp.WebUI.Pages.PurchaseRequests.IndexModel
+@{
+    ViewData["Title"] = "Purchase Requests";
+}
+
+<h2>Purchase Request List</h2>
+
+<a class="btn btn-primary mb-3" asp-page="Create">+ New Purchase Request</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Document No</th>
+            <th>Date</th>
+            <th>Company</th>
+            <th>Department</th>
+            <th>Indent Type</th>
+            <th>Requested By</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.PurchaseRequests)
+        {
+            <tr>
+                <td>@request.DocumentNo</td>
+                <td>@request.DocumentDate.ToString("yyyy-MM-dd")</td>
+                <td>@request.Company?.Name</td>
+                <td>@request.Department?.Name</td>
+                <td>@request.IndentType</td>
+                <td>@request.RequestedBy</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@request.Id"
+                        onsubmit="return confirm('Are you sure you want to delete this request?');">
+                        <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
